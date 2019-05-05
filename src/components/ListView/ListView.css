@@ -4,3 +4,7 @@
   background-color: #007bff;
   border-color: #007bff;
 }
+
+input[type="radio"], .radio-label {
+  display: block;
+}

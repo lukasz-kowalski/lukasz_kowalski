@@ -19,7 +19,7 @@ const ListItems = ({ characters }) => (
         <td>{character.name}</td>
         <td>{character.species}</td>
         <td>{character.gender}</td>
-        <td>{character.homewordl}</td>
+        <td>{character.homeworld}</td>
         <td>
           <div className="btn-group btn-group-sm" role="group" aria-label="Actions">
             <button type="button" className="btn btn-secondary">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import debounce from '../../utils/debounce';
 import ListItems from './ListItems';
 import ListPagination from './ListPagination';
@@ -33,15 +33,20 @@ class ListView extends Component {
     const { params } = this.props.match;  // get page from params
     const currentPage = params.page ? params.page : '1'; // if lack set to 1
     const pageParam = `_page=${currentPage}`;
-    const response = await this.fetchData(pageParam);
-    const { firstPage, lastPage } = await this.parseHeaders(response.headers)
-    const characters = await response.json()
-    this.setState({
-      characters,
-      currentPage,
-      firstPage,
-      lastPage
-    })
+    try {
+      const response = await this.fetchData(pageParam);
+      const { firstPage, lastPage } = await this.parseHeaders(response.headers);
+      const characters = await response.json();
+      this.setState({
+        characters,
+        currentPage,
+        firstPage,
+        lastPage
+      });
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 
   fetchData = async params => {
@@ -58,7 +63,7 @@ class ListView extends Component {
     return { firstPage, lastPage }
   }
 
-  handleChange = async event => {
+  handleChange = event => {
     const query = event.target ? event.target.value : '';
     const queryParam = query ? `&q=${query}` : '';
     this.fetchQuery(queryParam);
@@ -100,24 +105,24 @@ class ListView extends Component {
     }
 
     return (
-      <div className="container">
+      <main className="container">
         <h1>List View</h1>
 
         <div className="row">
           <div className="col-sm-6">
             <div className="form-group">
               <label htmlFor="searchInput" className="sr-only">Search</label>
-              <input 
+              <input
                 type="text" 
                 className="form-control" 
-                id="searchInput" 
+                id="searchInput"
                 placeholder="Search..." 
                 onChange={this.handleChange}
               />
             </div>
           </div>
           <div className="col-sm-6 text-sm-right">
-            <span className="btn btn-primary mb-3">Add New</span>
+            <Link to='/add-character' className="btn btn-primary mb-3">Add New</Link>
           </div>
         </div>
 
@@ -129,7 +134,10 @@ class ListView extends Component {
           paginationData={paginationData} 
           queryParam={this.state.queryParam}
         />}
-      </div>
+        {this.state.characters.length <= 0 && 
+          <p>No Results Found</p>
+        }
+      </main>
     );
   }
 }
