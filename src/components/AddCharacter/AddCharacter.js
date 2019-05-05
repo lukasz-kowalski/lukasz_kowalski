@@ -1,23 +1,54 @@
 import React from 'react';
 import TextInput from '../ui/TextInput';
 import Select from '../ui/Select';
+import Radio from '../ui/Radio';
+
+const radioData = [
+  {
+    id: 'character-male',
+    value: 'male',
+    label: 'Male'
+  },
+  {
+    id: 'character-female',
+    value: 'female',
+    label: 'Female'
+  },
+  {
+    id: 'character-na',
+    value: 'n/a',
+    label: 'n/a'
+  }
+]
 
 class AddCharacter extends React.Component {
+  constructor(props) {
+    super(props);
+    this['character-nameRef'] = React.createRef();
+    this['character-speciesRef'] = React.createRef();
+    this['character-genderRef'] = React.createRef();
+  }
   state = {
     species: [],
     doValidate: false,
     isFormValid: false,
-    'character-name': {
-      value: ''
-    },
-    'character-species': {
-      value: ''
-    },
-    'character-gender': {
-      value: ''
-    },
-    'character-homeland': {
-      value: ''
+    inputs: {
+      'character-name': {
+        value: '',
+        isValid: false
+      },
+      'character-species': {
+        value: '',
+        isValid: false
+      },
+      'character-gender': {
+        value: '',
+        isValid: false
+      },
+      'character-homeland': {
+        value: '',
+        isValid: true
+      }
     }
   }
 
@@ -42,6 +73,7 @@ class AddCharacter extends React.Component {
       this.setState({
         doValidate: false
       });
+      this.focusFirstInvalidField();
     } else {
       try {
         const response = await this.postData();
@@ -59,27 +91,52 @@ class AddCharacter extends React.Component {
 
   handleInputValue = (id, value) => {
     this.setState({
-      [id]: {
-        value
+      inputs: {
+        ...this.state.inputs,
+        [id]: {
+          ...this.state.inputs[id],
+          value
+        }
       }
     });
   }
 
-  validateForm = isInputValid => {
-    if (!isInputValid) {
-      this.setState({
-        isFormValid: false,
-      });
+  validateForm = async (id, isInputValid) => {
+    const keys = Object.keys(this.state.inputs);
+    await this.setState({
+      inputs: {
+        ...this.state.inputs,
+        [id]: {
+          ...this.state.inputs[id],
+          isValid: isInputValid
+        }
+      }
+    });
+    const allInputsValid = keys.every(key => this.state.inputs[key].isValid)
+    await this.setState({
+      isFormValid: allInputsValid,
+    });
+  }
+
+  focusFirstInvalidField = () => {
+    const keys = Object.keys(this.state.inputs);
+    let firstInvalid;
+    for (let key of keys) {
+      if (!this.state.inputs[key].isValid) {
+        firstInvalid = key
+        this[`${firstInvalid}Ref`].current.focus();
+        return;
+      }
     }
   }
 
   createPayload = () => {
     const payload = {
-      id: Math.floor(Math.random() * 1000),
-      name: this.state['character-name'].value,
-      species: this.state['character-species'].value,
-      gender: this.state['character-gender'].value,
-      homeworld: this.state['character-homeland'].value
+      id: Math.floor(Math.random() * 10000),
+      name: this.state.inputs['character-name'].value,
+      species: this.state.inputs['character-species'].value,
+      gender: this.state.inputs['character-gender'].value,
+      homeworld: this.state.inputs['character-homeland'].value
     };
     return payload;
   }
@@ -110,6 +167,7 @@ class AddCharacter extends React.Component {
             doValidate={this.state.doValidate}
             handleInputValue={this.handleInputValue}
             validateForm={this.validateForm}
+            reference={this['character-nameRef']}
           />
           <Select 
             id="character-species"
@@ -120,27 +178,19 @@ class AddCharacter extends React.Component {
             doValidate={this.state.doValidate}
             handleInputValue={this.handleInputValue}
             validateForm={this.validateForm}
+            reference={this['character-speciesRef']}
           />
-          <div className="form-check">
-          </div>
-          <label htmlFor="character-gender">Choose character gender<span className="blue">*</span></label>
-          <div className="form-check" id="character-gender" aria-label="choose character gender">
-            <input className="form-check-input" type="radio" name="character-gender" id="character-male" value="male" />
-            <label className="form-check-label radio-label" htmlFor="character-male">
-              Male
-            </label>
-            <input className="form-check-input is-invalid" type="radio" name="character-gender" id="character-female" value="female" />
-            <label className="form-check-label radio-label" htmlFor="character-female">
-              Female
-            </label>
-            <input className="form-check-input" type="radio" name="character-gender" id="character-na" value="n/a" />
-            <label className="form-check-label radio-label" htmlFor="character-na">
-              n/a
-            </label>
-            <div className="invalid-feedback">
-              This field is required.
-            </div>
-          </div>
+          <Radio
+            radioData={radioData}
+            id="character-gender"
+            label="Choose character gender"
+            isRequired={true}
+            errorMsg="This field is required."
+            doValidate={this.state.doValidate}
+            handleInputValue={this.handleInputValue}
+            validateForm={this.validateForm}
+            reference={this['character-genderRef']}
+          />
           <TextInput
             id="character-homeland"
             label="Character homeland"
