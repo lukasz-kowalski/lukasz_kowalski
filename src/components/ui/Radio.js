@@ -1,7 +1,7 @@
 import React from 'react';
 import withHandlers from './withHandlers';
 
-const Radio = ({ radioData, id, label, isRequired, errorMsg, handleChange, isValid, value, reference }) => (
+const Radio = ({ radioData, id, label, isRequired, errorMsg, handleChange, isValid, reference }) => (
   <React.Fragment>
     <label htmlFor={id}>
       {label}{isRequired && <span className="blue">*</span>}

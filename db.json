@@ -173,80 +173,17 @@
       "homeworld": ""
     },
     {
-      "id": 712,
-      "name": "fsafagf",
-      "species": "",
-      "gender": "",
-      "homeworld": ""
-    },
-    {
-      "id": 709,
-      "name": "dfzff",
-      "species": "",
-      "gender": "",
-      "homeworld": "afafadg"
-    },
-    {
-      "id": 242,
-      "name": "sddadsg",
-      "species": "",
-      "gender": "",
-      "homeworld": ""
-    },
-    {
-      "id": 641,
-      "name": "dsaf",
-      "species": "",
-      "gender": "",
-      "homeworld": ""
-    },
-    {
-      "id": 461,
-      "name": "afasdsd",
-      "species": "",
-      "gender": "",
-      "homeworld": ""
-    },
-    {
-      "id": 224,
-      "name": "",
-      "species": "",
-      "gender": "",
-      "homeworld": ""
-    },
-    {
-      "id": 588,
-      "name": "",
-      "species": "",
-      "gender": "",
-      "homeworld": ""
-    },
-    {
-      "id": 4697,
-      "name": "dsszdf",
+      "id": 1846,
+      "name": "Test",
       "species": "Cerean",
       "gender": "female",
       "homeworld": ""
     },
     {
-      "id": 9752,
-      "name": "",
-      "species": "Cerean",
-      "gender": "female",
-      "homeworld": ""
-    },
-    {
-      "id": 6485,
-      "name": "dgdgg",
+      "id": 6056,
+      "name": "Test",
       "species": "Chagrian",
-      "gender": "female",
-      "homeworld": ""
-    },
-    {
-      "id": 3959,
-      "name": "dfsfgdsg",
-      "species": "Cerean",
-      "gender": "female",
+      "gender": "n/a",
       "homeworld": ""
     }
   ]
