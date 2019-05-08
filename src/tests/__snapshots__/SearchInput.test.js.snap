@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render SearchInput 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="sr-only"
+    htmlFor="character-name"
+  >
+    Character name
+  </label>
+  <input
+    className="form-control"
+    id="character-name"
+    onChange={[Function]}
+    placeholder="Enter name"
+    type="search"
+  />
+</div>
+`;

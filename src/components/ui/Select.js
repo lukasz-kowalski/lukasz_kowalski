@@ -6,7 +6,7 @@ const Select = ({ id, label, options, isRequired, errorMsg, handleChange, value,
     <label htmlFor={id}>
       {label}{isRequired && <span className="blue">*</span>}
     </label>
-    <select 
+    <select
       className={`form-control ${!isValid ? 'is-invalid' : ''}`}
       id={id} 
       name={id}

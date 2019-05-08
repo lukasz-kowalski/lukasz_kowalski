@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render NavBar 1`] = `
+<nav
+  className="navbar navbar-expand-sm navbar-dark bg-primary mb-3"
+>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    className="navbar-brand"
+    exact={true}
+    to="/"
+  >
+    Sonalake Task
+  </NavLink>
+  <button
+    aria-expanded={false}
+    aria-label="Toggle navigation"
+    className="navbar-toggler collapsed"
+    onClick={[Function]}
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse"
+  >
+    <ul
+      className=" navbar-nav"
+    >
+      <li
+        className=" nav-item active"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-link"
+          exact={true}
+          to="/"
+        >
+          List View
+          <span
+            className=" sr-only"
+          >
+            (current)
+          </span>
+        </NavLink>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;

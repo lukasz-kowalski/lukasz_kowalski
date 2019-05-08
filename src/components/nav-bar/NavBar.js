@@ -16,11 +16,13 @@ class NavBar extends React.Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
         <NavLink to="/" exact className="navbar-brand">Sonalake Task</NavLink>
-        <button type="button"
+        <button 
+          type="button"
           onClick={this.onToggle}
           className={'navbar-toggler' + (!this.state.isOpen ? ' collapsed' : '')}
           aria-expanded={this.state.isOpen}
-          aria-label="Toggle navigation">
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"/>
         </button>
 

@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import debounce from '../../utils/debounce';
 import ListItems from './ListItems';
 import ListPagination from './ListPagination';
+import SearchInput from '../ui/SearchInput';
 
 import './ListView.css';
 
@@ -44,7 +45,7 @@ class ListView extends Component {
     const initialQuery = this.getInitialQuery();
     const { searchParam } = this.state;
     if (searchParam) {
-      return initialQuery + searchParam;
+      return '_page=1' + searchParam;
     }
     return initialQuery;
   }
@@ -57,7 +58,6 @@ class ListView extends Component {
     const redirectedPathname = pathname === '/' ? `/characters/${currentPage}` : pathname;
     const initialURL = `${redirectedPathname}?${this.getUpdatedQuery()}`;
     history.push(initialURL);
-    return initialURL;
   }
 
   fetchData = async () => {
@@ -70,14 +70,14 @@ class ListView extends Component {
         characters,
         firstPage,
         lastPage
-      })
+      });
     } catch (err) {
-      console.log(err);
+      console.log(err, err.stack);
     }
   }
 
   parseHeaders = headers => {
-    const paginationHeaders = headers.get('Link').split(',') // splitting header string into array
+    const paginationHeaders = headers.get('Link') ? headers.get('Link').split(',') : []; // splitting header string into array
     const first = paginationHeaders[0];
     const last = paginationHeaders[2];
     const firstPage = first ? first.match(/page=(\d+)/)[1] : ''; // extracting first page number
@@ -85,7 +85,7 @@ class ListView extends Component {
     return { firstPage, lastPage }
   }
 
-  handleChange = event => {
+  handleQueryChange = event => {
     const query = event.target ? event.target.value : '';
     const searchParam = query ? `&q=${query}` : '';
     this.setState({
@@ -125,16 +125,12 @@ class ListView extends Component {
 
         <div className="row">
           <div className="col-sm-6">
-            <div className="form-group">
-              <label htmlFor="searchInput" className="sr-only">Search</label>
-              <input
-                type="text" 
-                className="form-control" 
-                id="searchInput"
-                placeholder="Search..." 
-                onChange={this.handleChange}
-              />
-            </div>
+            <SearchInput
+              id="searchInput"
+              placeholder="Search characters..."
+              label="Search characters..."
+              handleQueryChange={this.handleQueryChange}
+            />
           </div>
           <div className="col-sm-6 text-sm-right">
             <Link to='/add-character' className="btn btn-primary mb-3">Add New</Link>

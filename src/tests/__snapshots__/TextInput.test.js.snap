@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render TextInput 1`] = `
+<TextInput
+  handleChange={[Function]}
+  id="character-name"
+  isValid={true}
+  label="Character name"
+  placeholder="Enter name"
+  validate={[Function]}
+  value=""
+/>
+`;

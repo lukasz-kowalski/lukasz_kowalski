@@ -6,7 +6,7 @@ function withHandlers(WrappedComponent) {
       isValid: true,
       value: ''
     }
-  
+   
     componentDidUpdate(prevProps) {
       if (prevProps.doValidate !== this.props.doValidate && this.props.doValidate === true) {
         this.validate()

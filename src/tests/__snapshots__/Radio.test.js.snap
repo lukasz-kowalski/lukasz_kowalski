@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render Radio 1`] = `
+<Radio
+  handleChange={[Function]}
+  id="character-gender"
+  isValid={true}
+  radioData={
+    Array [
+      Object {
+        "id": "character-male",
+        "label": "Male",
+        "value": "male",
+      },
+      Object {
+        "id": "character-female",
+        "label": "Female",
+        "value": "female",
+      },
+      Object {
+        "id": "character-na",
+        "label": "n/a",
+        "value": "n/a",
+      },
+    ]
+  }
+  validate={[Function]}
+  value=""
+/>
+`;

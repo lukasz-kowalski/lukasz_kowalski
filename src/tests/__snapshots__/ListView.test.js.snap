@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render ListView with characters 1`] = `
+<main
+  className="container"
+>
+  <h1>
+    List View
+  </h1>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-6"
+    >
+      <SearchInput
+        handleQueryChange={[Function]}
+        id="searchInput"
+        label="Search characters..."
+        placeholder="Search characters..."
+      />
+    </div>
+    <div
+      className="col-sm-6 text-sm-right"
+    >
+      <Link
+        className="btn btn-primary mb-3"
+        replace={false}
+        to="/add-character"
+      >
+        Add New
+      </Link>
+    </div>
+  </div>
+  <ListItems
+    characters={
+      Array [
+        Object {
+          "gender": "male",
+          "homeworld": "Tatooine",
+          "id": 1,
+          "name": "Luke Skywalker",
+          "species": "Human",
+        },
+        Object {
+          "gender": "n/a",
+          "homeworld": "Tatooine",
+          "id": 2,
+          "name": "C-3PO",
+          "species": "Droid",
+        },
+      ]
+    }
+  />
+</main>
+`;
+
+exports[`should successful render ListView with no results message 1`] = `
+<main
+  className="container"
+>
+  <h1>
+    List View
+  </h1>
+  <div
+    className="row"
+  >
+    <div
+      className="col-sm-6"
+    >
+      <SearchInput
+        handleQueryChange={[Function]}
+        id="searchInput"
+        label="Search characters..."
+        placeholder="Search characters..."
+      />
+    </div>
+    <div
+      className="col-sm-6 text-sm-right"
+    >
+      <Link
+        className="btn btn-primary mb-3"
+        replace={false}
+        to="/add-character"
+      >
+        Add New
+      </Link>
+    </div>
+  </div>
+  <ListItems
+    characters={Array []}
+  />
+  <p>
+    No Results Found
+  </p>
+</main>
+`;

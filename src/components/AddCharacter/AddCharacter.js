@@ -28,6 +28,7 @@ class AddCharacter extends React.Component {
     this['character-speciesRef'] = React.createRef();
     this['character-genderRef'] = React.createRef();
   }
+
   state = {
     species: [],
     doValidate: false,

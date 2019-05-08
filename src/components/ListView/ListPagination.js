@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ListPagination = ({ isFirstPage, isLastPage, numCurrentPage ,paginationData }) => (
+const ListPagination = ({ isFirstPage, isLastPage, numCurrentPage, paginationData }) => (
    <nav aria-label="Data grid navigation">
     <ul className="pagination justify-content-end">
       <li className={`page-item ${isFirstPage ? 'disabled' : ''}`}>

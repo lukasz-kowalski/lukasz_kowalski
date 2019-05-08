@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render ListPagination 1`] = `
+<nav
+  aria-label="Data grid navigation"
+>
+  <ul
+    className="pagination justify-content-end"
+  >
+    <li
+      className="page-item disabled"
+    >
+      <Link
+        className="page-link"
+        replace={false}
+        tabIndex="-1"
+        to={
+          Object {
+            "pathname": "/characters/0",
+            "search": "_page=0",
+          }
+        }
+      >
+        Previous
+      </Link>
+    </li>
+    <li
+      className="page-item"
+      key="nav-li1"
+    >
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="page-link active"
+        to={
+          Object {
+            "pathname": "/characters/1",
+            "search": "_page=1",
+          }
+        }
+      >
+        1
+         
+        <span
+          className="sr-only"
+        >
+          (current)
+        </span>
+      </NavLink>
+    </li>
+    <li
+      className="page-item "
+    >
+      <Link
+        className="page-link"
+        replace={false}
+        tabIndex="0"
+        to={
+          Object {
+            "pathname": "/characters/2",
+            "search": "_page=2",
+          }
+        }
+      >
+        Next
+      </Link>
+    </li>
+  </ul>
+</nav>
+`;
