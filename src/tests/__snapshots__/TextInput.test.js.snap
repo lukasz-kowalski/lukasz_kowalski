@@ -1,13 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should successful render TextInput 1`] = `
-<TextInput
-  handleChange={[Function]}
-  id="character-name"
-  isValid={true}
-  label="Character name"
-  placeholder="Enter name"
-  validate={[Function]}
-  value=""
-/>
+<div
+  className="form-group"
+>
+  <label
+    htmlFor="character-name"
+  >
+    Character name
+  </label>
+  <input
+    className="form-control "
+    id="character-name"
+    name="character-name"
+    onBlur={[MockFunction]}
+    onChange={[MockFunction]}
+    placeholder="Enter name"
+    type="text"
+  />
+  <div
+    className="invalid-feedback"
+  />
+</div>
 `;

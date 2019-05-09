@@ -9,7 +9,7 @@ const handleSortChange = jest.fn();
 beforeEach(() => {
   wrapper = shallow(
   <ListSortButton
-    name='Species'
+    name="Species"
     handleSortChange={handleSortChange}
   />);
 })

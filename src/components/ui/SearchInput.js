@@ -11,7 +11,7 @@ class SearchInput extends React.Component {
       <div className="form-group">
         <label htmlFor={id} className="sr-only">{label}</label>
         <input
-          type="search" 
+          type="search"
           className="form-control" 
           id={id}
           placeholder={placeholder} 

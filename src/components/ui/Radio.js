@@ -32,3 +32,4 @@ const Radio = ({ radioData, id, label, isRequired, errorMsg, handleChange, isVal
 );
 
 export default withHandlers(Radio);
+export { Radio };

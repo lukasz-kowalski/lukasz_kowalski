@@ -1,19 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should successful render Select 1`] = `
-<Select
-  handleChange={[Function]}
-  id="character-species"
-  isValid={true}
-  label="Choose character species"
-  options={
-    Array [
-      "Option1",
-      "Option2",
-      "Option3",
-    ]
-  }
-  validate={[Function]}
-  value=""
-/>
+<div
+  className="form-group"
+>
+  <label
+    htmlFor="character-species"
+  >
+    Choose character species
+  </label>
+  <select
+    className="form-control "
+    id="character-species"
+    name="character-species"
+    onChange={[MockFunction]}
+  >
+    <option
+      value=""
+    >
+      --Please choose an option--
+    </option>
+    <option
+      key="species0"
+      value="Option1"
+    >
+      Option1
+    </option>
+    <option
+      key="species1"
+      value="Option2"
+    >
+      Option2
+    </option>
+    <option
+      key="species2"
+      value="Option3"
+    >
+      Option3
+    </option>
+  </select>
+  <div
+    className="invalid-feedback"
+  />
+</div>
 `;

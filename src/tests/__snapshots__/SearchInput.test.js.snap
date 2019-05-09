@@ -6,15 +6,15 @@ exports[`should successful render SearchInput 1`] = `
 >
   <label
     className="sr-only"
-    htmlFor="character-name"
+    htmlFor="searchInput"
   >
-    Character name
+    Search characters...
   </label>
   <input
     className="form-control"
-    id="character-name"
+    id="searchInput"
     onChange={[Function]}
-    placeholder="Enter name"
+    placeholder="Search characters..."
     type="search"
   />
 </div>

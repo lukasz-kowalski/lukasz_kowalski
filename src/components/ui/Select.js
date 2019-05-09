@@ -26,3 +26,4 @@ const Select = ({ id, label, options, isRequired, errorMsg, handleChange, value,
 );
 
 export default withHandlers(Select);
+export { Select };

@@ -24,3 +24,4 @@ const TextInput = ({ id, label, isRequired, placeholder, errorMsg, handleChange,
 );
 
 export default withHandlers(TextInput);
+export { TextInput };

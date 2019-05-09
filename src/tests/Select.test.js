@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Select from '../components/ui/Select';
+import { Select } from '../components/ui/Select';
 
 let wrapper;
 
@@ -10,6 +10,8 @@ const options = [
   'Option3'
 ];
 
+const handleChange = jest.fn();
+
 beforeEach(() => {
   wrapper = shallow(
   <Select
@@ -17,9 +19,16 @@ beforeEach(() => {
     label="Choose character species"
     isValid={true}
     options={options}
+    handleChange={handleChange}
   />);
 })
 
 test('should successful render Select', () => {
   expect(wrapper).toMatchSnapshot();
+})
+
+test('should call handleChange function on change', () => {
+  const event = { target: { value: 'Test' } };
+  wrapper.find('#character-species').simulate('change', event);
+  expect(handleChange).toBeCalledWith(event);
 })

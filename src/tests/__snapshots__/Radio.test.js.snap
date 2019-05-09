@@ -1,30 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should successful render Radio 1`] = `
-<Radio
-  handleChange={[Function]}
-  id="character-gender"
-  isValid={true}
-  radioData={
-    Array [
-      Object {
-        "id": "character-male",
-        "label": "Male",
-        "value": "male",
-      },
-      Object {
-        "id": "character-female",
-        "label": "Female",
-        "value": "female",
-      },
-      Object {
-        "id": "character-na",
-        "label": "n/a",
-        "value": "n/a",
-      },
-    ]
-  }
-  validate={[Function]}
-  value=""
-/>
+<Fragment>
+  <label
+    htmlFor="character-gender"
+  />
+  <div
+    className="form-check"
+    id="character-gender"
+  >
+    <input
+      checked={false}
+      className="form-check-input is-invalid"
+      id="character-male"
+      name="character-gender"
+      onChange={[MockFunction]}
+      type="radio"
+      value="male"
+    />
+    <label
+      className="form-check-label radio-label"
+      htmlFor="character-male"
+    >
+      Male
+    </label>
+    <input
+      checked={false}
+      className="form-check-input is-invalid"
+      id="character-female"
+      name="character-gender"
+      onChange={[MockFunction]}
+      type="radio"
+      value="female"
+    />
+    <label
+      className="form-check-label radio-label"
+      htmlFor="character-female"
+    >
+      Female
+    </label>
+    <input
+      checked={false}
+      className="form-check-input is-invalid"
+      id="character-na"
+      name="character-gender"
+      onChange={[MockFunction]}
+      type="radio"
+      value="n/a"
+    />
+    <label
+      className="form-check-label radio-label"
+      htmlFor="character-na"
+    >
+      n/a
+    </label>
+    <div
+      className="invalid-feedback"
+    />
+  </div>
+</Fragment>
 `;
