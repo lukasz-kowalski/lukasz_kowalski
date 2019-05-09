@@ -2,7 +2,6 @@ import React from 'react';
 
 class ListSortButton extends React.Component {
   handleClick = () => {
-    console.log('1')
     this.props.handleSortChange(this.props.name.toLowerCase());
   }
 

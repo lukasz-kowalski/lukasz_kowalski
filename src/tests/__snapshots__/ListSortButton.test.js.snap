@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render ListSortButton 1`] = `
+<th
+  scope="col"
+>
+  <button
+    className="th-button"
+    onClick={[Function]}
+  >
+    Species
+  </button>
+</th>
+`;
