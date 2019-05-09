@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/nav-bar/NavBar';
 import ListView from './components/ListView/ListView';
-import AddCharacter from './components/AddCharacter/AddCharacter';
+import CharactersForm from './components/CharactersForm/CharactersForm';
 
 const Routes = () => (
     <BrowserRouter>
@@ -11,7 +11,8 @@ const Routes = () => (
         <Switch>
           <Route path='/' component={ListView} exact />
           <Route path='/characters/:page' component={ListView} />
-          <Route path='/add-character' component={AddCharacter} />
+          <Route path='/add-character' component={CharactersForm} />
+          <Route path='/edit-character/:id' component={CharactersForm} />
         </Switch>
       </React.Fragment>
     </BrowserRouter>

@@ -58,8 +58,9 @@ beforeEach(() => {
     history={history}
   />);
   wrapper.setState({
-    searchParam: '&q=luke'
-  })
+    searchParam: '&q=luke',
+    sortParam: '&_sort=name&_order=asc'
+  });
 })
 
 test('should successful render ListView with no results message', () => {
@@ -69,7 +70,7 @@ test('should successful render ListView with no results message', () => {
 test('should successful render ListView with characters', () => {
   wrapper.setState({
     characters
-  })
+  });
   expect(wrapper).toMatchSnapshot();
 })
 
@@ -78,7 +79,12 @@ test('should return _page=1 string', () => {
 })
 
 test('should return _page=1&q=luke string', () => {
-  expect(wrapper.instance().getUpdatedQuery()).toBe('_page=1&q=luke');
+  expect(wrapper.instance().setSearchToQuery()).toBe('_page=1&q=luke');
+})
+
+test('should return _page=1&q=luke&_sort=name&_order=asc string', () => {
+  const query = '_page=1&q=luke&_sort=name&_order=asc'
+  expect(wrapper.instance().setSortToQuery()).toBe(query);
 })
 
 test('should push history to /characters/1?_page=1 on first render', () => {
@@ -92,8 +98,9 @@ test('should set characters state from api fetch', async () => {
     firstPage: '',
     lastPage: '',
     currentPage: '1',
-    searchParam: '&q=luke'
-  }
+    searchParam: '&q=luke',
+    sortParam: '&_sort=name&_order=asc'
+  };
   await wrapper.instance().fetchData();
   expect(wrapper.state()).toEqual(mockedState);
 })
@@ -111,8 +118,8 @@ test('should change searchParam in component state to &q=luke', () => {
     target: {
       value: 'luke'
     }
-  }
-  wrapper.instance().handleQueryChange(event)
+  };
+  wrapper.instance().handleQueryChange(event);
   expect(wrapper.state('searchParam')).toBe('&q=luke');
 })
 
@@ -122,6 +129,18 @@ test('should change searchParam in component state to empty string when event ha
       value: ''
     }
   }
-  wrapper.instance().handleQueryChange(event)
+  wrapper.instance().handleQueryChange(event);
   expect(wrapper.state('searchParam')).toBe('');
+})
+
+test('should change sortParam in component state to &q=luke', () => {
+  const name = 'species';
+  const sortParam = '&_sort=species&_order=asc';
+  wrapper.instance().handleSortChange(name);
+  expect(wrapper.state('sortParam')).toBe(sortParam);
+})
+
+test('should change sortParam to empty string when no sort selected', () => {
+  wrapper.instance().handleSortChange('');
+  expect(wrapper.state('sortParam')).toBe('');
 })

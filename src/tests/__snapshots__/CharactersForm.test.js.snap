@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render AddCharacter form 1`] = `
+<main
+  className="container"
+>
+  <h1>
+    Add new
+     character
+  </h1>
+  <form
+    onSubmit={[Function]}
+  >
+    <WithHandlers
+      doValidate={false}
+      errorMsg="This field is required."
+      handleInputValue={[Function]}
+      id="character-name"
+      isRequired={true}
+      label="Character name"
+      placeholder="Enter name"
+      reference={
+        Object {
+          "current": null,
+        }
+      }
+      validateForm={[Function]}
+      value=""
+    />
+    <WithHandlers
+      doValidate={false}
+      errorMsg="This field is required."
+      handleInputValue={[Function]}
+      id="character-species"
+      isRequired={true}
+      label="Choose character species"
+      options={Array []}
+      reference={
+        Object {
+          "current": null,
+        }
+      }
+      validateForm={[Function]}
+      value=""
+    />
+    <WithHandlers
+      doValidate={false}
+      errorMsg="This field is required."
+      handleInputValue={[Function]}
+      id="character-gender"
+      isRequired={true}
+      label="Choose character gender"
+      radioData={
+        Array [
+          Object {
+            "id": "character-male",
+            "label": "Male",
+            "value": "male",
+          },
+          Object {
+            "id": "character-female",
+            "label": "Female",
+            "value": "female",
+          },
+          Object {
+            "id": "character-na",
+            "label": "n/a",
+            "value": "n/a",
+          },
+        ]
+      }
+      reference={
+        Object {
+          "current": null,
+        }
+      }
+      validateForm={[Function]}
+      value=""
+    />
+    <WithHandlers
+      handleInputValue={[Function]}
+      id="character-homeworld"
+      label="Character homeworld"
+      placeholder="Enter homeworld"
+      value=""
+    />
+    <button
+      className="btn btn-primary false"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</main>
+`;
+
+exports[`should successful render EditCharacter form 1`] = `
+<main
+  className="container"
+>
+  <h1>
+    Edit
+     character
+  </h1>
+  <form
+    onSubmit={[Function]}
+  >
+    <WithHandlers
+      doValidate={false}
+      errorMsg="This field is required."
+      handleInputValue={[Function]}
+      id="character-name"
+      isRequired={true}
+      label="Character name"
+      placeholder="Enter name"
+      reference={
+        Object {
+          "current": null,
+        }
+      }
+      validateForm={[Function]}
+      value=""
+    />
+    <WithHandlers
+      doValidate={false}
+      errorMsg="This field is required."
+      handleInputValue={[Function]}
+      id="character-species"
+      isRequired={true}
+      label="Choose character species"
+      options={Array []}
+      reference={
+        Object {
+          "current": null,
+        }
+      }
+      validateForm={[Function]}
+      value=""
+    />
+    <WithHandlers
+      doValidate={false}
+      errorMsg="This field is required."
+      handleInputValue={[Function]}
+      id="character-gender"
+      isRequired={true}
+      label="Choose character gender"
+      radioData={
+        Array [
+          Object {
+            "id": "character-male",
+            "label": "Male",
+            "value": "male",
+          },
+          Object {
+            "id": "character-female",
+            "label": "Female",
+            "value": "female",
+          },
+          Object {
+            "id": "character-na",
+            "label": "n/a",
+            "value": "n/a",
+          },
+        ]
+      }
+      reference={
+        Object {
+          "current": null,
+        }
+      }
+      validateForm={[Function]}
+      value=""
+    />
+    <WithHandlers
+      handleInputValue={[Function]}
+      id="character-homeworld"
+      label="Character homeworld"
+      placeholder="Enter homeworld"
+      value=""
+    />
+    <button
+      className="btn btn-primary false"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</main>
+`;

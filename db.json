@@ -173,18 +173,46 @@
       "homeworld": ""
     },
     {
-      "id": 1846,
+      "id": 4584,
       "name": "Test",
+      "species": "Besalisk",
+      "gender": "male",
+      "homeworld": "sdfdfg"
+    },
+    {
+      "id": 4730,
+      "name": "test",
       "species": "Cerean",
       "gender": "female",
       "homeworld": ""
     },
     {
-      "id": 6056,
-      "name": "Test",
+      "id": 3327,
+      "name": "safsf",
       "species": "Chagrian",
+      "gender": "male",
+      "homeworld": ""
+    },
+    {
+      "id": 2139,
+      "name": "TESCIK",
+      "species": "Cerean",
       "gender": "n/a",
       "homeworld": ""
+    },
+    {
+      "id": 6195,
+      "name": "TESCIK2",
+      "species": "Geonosian",
+      "gender": "male",
+      "homeworld": ""
+    },
+    {
+      "id": 5249,
+      "name": "jhkjhj",
+      "species": "Cerean",
+      "gender": "female",
+      "homeworld": "vdsgds"
     }
   ]
 }

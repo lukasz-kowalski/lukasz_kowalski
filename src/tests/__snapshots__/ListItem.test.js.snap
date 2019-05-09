@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should successful render ListItem 1`] = `
+<tr
+  key="Test"
+>
+  <th
+    scope="row"
+  />
+  <td>
+    Test
+  </td>
+  <td>
+    Martian
+  </td>
+  <td>
+    female
+  </td>
+  <td />
+  <td>
+    <div
+      aria-label="Actions"
+      className="btn-group btn-group-sm"
+      role="group"
+    >
+      <button
+        className="btn btn-secondary"
+        type="button"
+      >
+        <Link
+          replace={false}
+          to={
+            Object {
+              "pathname": "/edit-character/undefined",
+              "state": Object {
+                "gender": "female",
+                "homeworld": "",
+                "name": "Test",
+                "species": "Martian",
+              },
+            }
+          }
+        >
+          <i
+            aria-hidden="true"
+            className="fa fa-pencil"
+          />
+           Edit
+        </Link>
+      </button>
+      <button
+        className="btn btn-danger"
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          aria-hidden="true"
+          className="fa fa-trash-o"
+        />
+         Remove
+      </button>
+    </div>
+  </td>
+</tr>
+`;

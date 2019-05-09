@@ -21,7 +21,7 @@ const radioData = [
   }
 ]
 
-class AddCharacter extends React.Component {
+class CharactersForm extends React.Component {
   constructor(props) {
     super(props);
     this['character-nameRef'] = React.createRef();
@@ -46,7 +46,7 @@ class AddCharacter extends React.Component {
         value: '',
         isValid: false
       },
-      'character-homeland': {
+      'character-homeworld': {
         value: '',
         isValid: true
       }
@@ -55,6 +55,34 @@ class AddCharacter extends React.Component {
 
   componentDidMount() {
     this.fetchSpecies();
+    if (this.props.location.state) {
+      this.setInitialState();
+    }
+  }
+
+  setInitialState = () => {
+    const { name, species, gender, homeworld } = this.props.location.state;
+    this.setState({
+      inputs: {
+        ...this.state.inputs,
+        'character-name': {
+          ...this.state.inputs['character-name'],
+          value: name
+        },
+        'character-species': {
+          ...this.state.inputs['character-species'],
+          value: species
+        },
+        'character-gender': {
+          ...this.state.inputs['character-gender'],
+          value: gender
+        },
+        'character-homeworld': {
+          ...this.state.inputs['character-homeworld'],
+          value: homeworld
+        },
+      }
+    });
   }
 
   fetchSpecies = async () => {
@@ -77,7 +105,7 @@ class AddCharacter extends React.Component {
       this.focusFirstInvalidField();
     } else {
       try {
-        const response = await this.postData();
+        const response = await this.sendData();
         if (response.ok) {
           this.setState({
             doValidate: false
@@ -137,15 +165,17 @@ class AddCharacter extends React.Component {
       name: this.state.inputs['character-name'].value,
       species: this.state.inputs['character-species'].value,
       gender: this.state.inputs['character-gender'].value,
-      homeworld: this.state.inputs['character-homeland'].value
+      homeworld: this.state.inputs['character-homeworld'].value
     };
     return payload;
   }
 
-  postData = () => {
+  sendData = () => {
+    const { state } = this.props.location;
     const payload = this.createPayload();
-    return fetch('http://localhost:3000/characters', {
-      method: 'POST',
+    const characterId = state ? `/${state.id}` : '';
+    return fetch(`http://localhost:3000/characters${characterId}`, {
+      method: state ? 'PUT' : 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -154,9 +184,10 @@ class AddCharacter extends React.Component {
   }
 
   render() {
+    const isEditForm = this.props.location.pathname.includes('edit-character');
     return (
       <main className="container">
-        <h1>Add new character</h1>
+        <h1>{isEditForm ? 'Edit' : 'Add new'} character</h1>
 
         <form onSubmit={this.handleSubmit}>
           <TextInput
@@ -169,6 +200,7 @@ class AddCharacter extends React.Component {
             handleInputValue={this.handleInputValue}
             validateForm={this.validateForm}
             reference={this['character-nameRef']}
+            value={this.state.inputs['character-name'].value}
           />
           <Select 
             id="character-species"
@@ -180,6 +212,7 @@ class AddCharacter extends React.Component {
             handleInputValue={this.handleInputValue}
             validateForm={this.validateForm}
             reference={this['character-speciesRef']}
+            value={this.state.inputs['character-species'].value}
           />
           <Radio
             radioData={radioData}
@@ -191,12 +224,14 @@ class AddCharacter extends React.Component {
             handleInputValue={this.handleInputValue}
             validateForm={this.validateForm}
             reference={this['character-genderRef']}
+            value={this.state.inputs['character-gender'].value}
           />
           <TextInput
-            id="character-homeland"
-            label="Character homeland"
-            placeholder="Enter homeland"
+            id="character-homeworld"
+            label="Character homeworld"
+            placeholder="Enter homeworld"
             handleInputValue={this.handleInputValue}
+            value={this.state.inputs['character-homeworld'].value}
           />
           <button type="submit" className={`btn btn-primary ${this.state.doValidate && 'disabled'}`}>Submit</button>
         </form>
@@ -205,4 +240,4 @@ class AddCharacter extends React.Component {
   };
 };
 
-export default AddCharacter;
+export default CharactersForm;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AddCharacter from '../components/AddCharacter/AddCharacter';
+import CharactersForm from '../components/CharactersForm/CharactersForm';
 
 let wrapper;
 const mockMath = Object.create(global.Math);
@@ -8,14 +8,72 @@ mockMath.random = () => 1;
 global.Math = mockMath;
 
 beforeEach(() => {
+  const location = {
+    pathname: '/add-character/'
+  };
   const species = ['aliens', 'martians'];
   fetch.mockResponse(JSON.stringify(species));
   wrapper = shallow(
-  <AddCharacter />);
+  <CharactersForm location={location} />
+  );
 })
 
-test('should successful render AddCharacter', () => {
+test('should successful render AddCharacter form', () => {
   expect(wrapper).toMatchSnapshot();
+})
+
+test('should successful render EditCharacter form', () => {
+  const location = {
+    pathname: '/edit-character/123'
+  };
+  wrapper.setProps({
+    location: location
+  })
+  expect(wrapper).toMatchSnapshot();
+})
+
+test('should set initial state from props', () => {
+  const state = {
+    species: [],
+    doValidate: false,
+    isFormValid: false,
+    inputs: {
+      'character-name': {
+        value: 'Test',
+        isValid: false
+      },
+      'character-species': {
+        value: 'Martian',
+        isValid: false
+      },
+      'character-gender': {
+        value: 'n/a',
+        isValid: false
+      },
+      'character-homeworld': {
+        value: 'Mars',
+        isValid: true
+      }
+    }
+  };
+
+  const propsState = {
+    name: 'Test',
+    species: 'Martian',
+    gender: 'n/a',
+    homeworld: 'Mars'
+  };
+
+  const location = {
+    pathname: '/edit-character/123',
+    state: propsState
+  }
+
+  const wrapper2 = shallow(
+    <CharactersForm location={location} />
+  );
+
+  expect(wrapper2.state()).toEqual(state);
 })
 
 test('should set character-name value to abc', () => {
@@ -52,7 +110,7 @@ test('should create expected payload', () => {
     { name: 'character-name', value: 'Last Man' },
     { name: 'character-species', value: 'martian' },
     { name: 'character-gender', value: 'male' },
-    { name: 'character-homeland', value: 'Mars' }
+    { name: 'character-homeworld', value: 'Mars' }
   ];
 
   inputs.forEach(input => wrapper.instance().handleInputValue(input.name, input.value));

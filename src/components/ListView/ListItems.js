@@ -1,36 +1,31 @@
 import React from 'react';
+import ListItem from './ListItem';
+import ListSortButton from './ListSortButton';
 
-const ListItems = ({ characters }) => (
+const buttonNames = [
+  'Id', 'Name', 'Species', 'Gender', 'Homeworld', 'Actions'
+]
+
+const ListItems = ({ characters, deleteCharacter, handleSortChange }) => (
   <table className="table table-bordered table-hover">
     <thead className="thead-light">
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Name</th>
-      <th scope="col">Species</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Homeworld</th>
-      <th scope="col">Actions</th>
+      {buttonNames.map(item => 
+        <ListSortButton
+          key={item}
+          handleSortChange={handleSortChange}
+          name={item}
+        />
+      )}
     </tr>
     </thead>
     <tbody>
-    {characters.map((character, index) => 
-      <tr key={character.name}>
-        <th scope="row">{index + 1}</th>
-        <td>{character.name}</td>
-        <td>{character.species}</td>
-        <td>{character.gender}</td>
-        <td>{character.homeworld}</td>
-        <td>
-          <div className="btn-group btn-group-sm" role="group" aria-label="Actions">
-            <button type="button" className="btn btn-secondary">
-              <i className="fa fa-pencil" aria-hidden="true"/> Edit
-            </button>
-            <button type="button" className="btn btn-danger">
-              <i className="fa fa-trash-o" aria-hidden="true"/> Remove
-            </button>
-          </div>
-        </td>
-      </tr>
+    {characters.map(character =>
+      <ListItem
+        key={character.name + character.id}
+        character={character} 
+        deleteCharacter={deleteCharacter}
+      />
     )}
     </tbody>
   </table>

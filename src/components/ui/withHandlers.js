@@ -6,6 +6,18 @@ function withHandlers(WrappedComponent) {
       isValid: true,
       value: ''
     }
+
+    async componentWillReceiveProps(nextProps) {
+      if (this.props.value !== nextProps.value) {
+        await this.setState({
+          value: nextProps.value
+        });
+        const isValid = this.state.value.length > 0;
+        if (this.props.validateForm) {
+          this.props.validateForm(nextProps.id, isValid);
+        }
+      }
+    }
    
     componentDidUpdate(prevProps) {
       if (prevProps.doValidate !== this.props.doValidate && this.props.doValidate === true) {
@@ -44,6 +56,7 @@ function withHandlers(WrappedComponent) {
         handleChange: this.handleChange,
         validate: this.validate
       }
+
       return <WrappedComponent {...newProps} />
     }
   }

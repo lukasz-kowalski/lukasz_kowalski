@@ -18,7 +18,8 @@ class ListView extends Component {
     currentPage: '',
     firstPage: '',
     lastPage: '',
-    searchParam: ''
+    searchParam: '',
+    sortParam: ''
   }
 
   componentDidMount() {
@@ -41,7 +42,7 @@ class ListView extends Component {
     return initialQuery;
   }
 
-  getUpdatedQuery = () => {
+  setSearchToQuery = () => {
     const initialQuery = this.getInitialQuery();
     const { searchParam } = this.state;
     if (searchParam) {
@@ -50,27 +51,45 @@ class ListView extends Component {
     return initialQuery;
   }
 
-  setURL = () => {
+  setSortToQuery = () => {
+    const queryWithSearch = this.setSearchToQuery();
+    const { sortParam } = this.state;
+    if (sortParam) {
+      return queryWithSearch + sortParam;
+    }
+    return queryWithSearch;
+  }
+
+  setURL = retry => {
     const { params } = this.props.match;
     const { history } = this.props;
     const { pathname } = this.props.location;
     const currentPage = params.page ? params.page : '1';
-    const redirectedPathname = pathname === '/' ? `/characters/${currentPage}` : pathname;
-    const initialURL = `${redirectedPathname}?${this.getUpdatedQuery()}`;
+    let newPathname = pathname;
+    if (retry) {
+      const pathArr = newPathname.split('/');
+      pathArr[2] -= 1;
+      newPathname = pathArr.join('/');
+    }
+    const redirectedPathname = newPathname === '/' ? `/characters/${currentPage}` : newPathname;
+    const initialURL = `${redirectedPathname}?${this.setSortToQuery()}`;
     history.push(initialURL);
   }
 
-  fetchData = async () => {
-    this.setURL();
+  fetchData = async retry => {
+    this.setURL(retry);
     try {
-      const response = await fetch(`http://localhost:3000/characters?${this.getUpdatedQuery()}`);
+      const response = await fetch(`http://localhost:3000/characters?${this.setSortToQuery()}`);
       const { firstPage, lastPage } = await this.parseHeaders(response.headers);
       const characters = await response.json();
-      this.setState({
+      await this.setState({
         characters,
         firstPage,
         lastPage
       });
+      if (this.state.characters.length === 0 && this.state.currentPage !== '1') {
+        this.setURL(true);
+      }
     } catch (err) {
       console.log(err, err.stack);
     }
@@ -90,17 +109,34 @@ class ListView extends Component {
     const searchParam = query ? `&q=${query}` : '';
     this.setState({
       searchParam
-    })
+    });
     this.fetchSearchData();
+  }
+
+  handleSortChange = async name => {
+    const sortParam = name ? `&_sort=${name}&_order=asc` : '';
+    await this.setState({
+      sortParam
+    });
+    this.fetchData();
   }
 
   fetchSearchData = () => {
     this.fetchData();
   }
 
+  deleteCharacter = async id => {
+    const response = await fetch(`http://localhost:3000/characters/${id}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      this.fetchSearchData();
+    }
+  }
+
   render() {
     const { params } = this.props.match;
-    const { characters ,currentPage, firstPage, lastPage } = this.state;
+    const { characters, currentPage, firstPage, lastPage } = this.state;
     const numCurrentPage = Number(params.page);
     const isFirstPage = currentPage === firstPage;
     const isLastPage = currentPage === lastPage;
@@ -137,12 +173,17 @@ class ListView extends Component {
           </div>
         </div>
 
-        <ListItems characters={characters} />            
+        <ListItems 
+          characters={characters}
+          deleteCharacter={this.deleteCharacter}
+          handleSortChange={this.handleSortChange}
+        />
+
         {paginationData.length > 0 && <ListPagination
           isFirstPage={isFirstPage}
           isLastPage={isLastPage}
           numCurrentPage={numCurrentPage}
-          paginationData={paginationData} 
+          paginationData={paginationData}
         />}
         {this.state.characters.length <= 0 && 
           <p>No Results Found</p>

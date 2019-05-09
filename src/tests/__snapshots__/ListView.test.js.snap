@@ -51,6 +51,8 @@ exports[`should successful render ListView with characters 1`] = `
         },
       ]
     }
+    deleteCharacter={[Function]}
+    handleSortChange={[Function]}
   />
 </main>
 `;
@@ -89,6 +91,8 @@ exports[`should successful render ListView with no results message 1`] = `
   </div>
   <ListItems
     characters={Array []}
+    deleteCharacter={[Function]}
+    handleSortChange={[Function]}
   />
   <p>
     No Results Found

@@ -8,137 +8,57 @@ exports[`should successful render ListItems 1`] = `
     className="thead-light"
   >
     <tr>
-      <th
-        scope="col"
-      >
-        Id
-      </th>
-      <th
-        scope="col"
-      >
-        Name
-      </th>
-      <th
-        scope="col"
-      >
-        Species
-      </th>
-      <th
-        scope="col"
-      >
-        Gender
-      </th>
-      <th
-        scope="col"
-      >
-        Homeworld
-      </th>
-      <th
-        scope="col"
-      >
-        Actions
-      </th>
+      <ListSortButton
+        key="Id"
+        name="Id"
+      />
+      <ListSortButton
+        key="Name"
+        name="Name"
+      />
+      <ListSortButton
+        key="Species"
+        name="Species"
+      />
+      <ListSortButton
+        key="Gender"
+        name="Gender"
+      />
+      <ListSortButton
+        key="Homeworld"
+        name="Homeworld"
+      />
+      <ListSortButton
+        key="Actions"
+        name="Actions"
+      />
     </tr>
   </thead>
   <tbody>
-    <tr
-      key="Luke Skywalker"
-    >
-      <th
-        scope="row"
-      >
-        1
-      </th>
-      <td>
-        Luke Skywalker
-      </td>
-      <td>
-        Human
-      </td>
-      <td>
-        male
-      </td>
-      <td>
-        Tatooine
-      </td>
-      <td>
-        <div
-          aria-label="Actions"
-          className="btn-group btn-group-sm"
-          role="group"
-        >
-          <button
-            className="btn btn-secondary"
-            type="button"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-pencil"
-            />
-             Edit
-          </button>
-          <button
-            className="btn btn-danger"
-            type="button"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-trash-o"
-            />
-             Remove
-          </button>
-        </div>
-      </td>
-    </tr>
-    <tr
-      key="C-3PO"
-    >
-      <th
-        scope="row"
-      >
-        2
-      </th>
-      <td>
-        C-3PO
-      </td>
-      <td>
-        Droid
-      </td>
-      <td>
-        n/a
-      </td>
-      <td>
-        Tatooine
-      </td>
-      <td>
-        <div
-          aria-label="Actions"
-          className="btn-group btn-group-sm"
-          role="group"
-        >
-          <button
-            className="btn btn-secondary"
-            type="button"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-pencil"
-            />
-             Edit
-          </button>
-          <button
-            className="btn btn-danger"
-            type="button"
-          >
-            <i
-              aria-hidden="true"
-              className="fa fa-trash-o"
-            />
-             Remove
-          </button>
-        </div>
-      </td>
-    </tr>
+    <ListItem
+      character={
+        Object {
+          "gender": "male",
+          "homeworld": "Tatooine",
+          "id": 1,
+          "name": "Luke Skywalker",
+          "species": "Human",
+        }
+      }
+      key="Luke Skywalker1"
+    />
+    <ListItem
+      character={
+        Object {
+          "gender": "n/a",
+          "homeworld": "Tatooine",
+          "id": 2,
+          "name": "C-3PO",
+          "species": "Droid",
+        }
+      }
+      key="C-3PO2"
+    />
   </tbody>
 </table>
 `;

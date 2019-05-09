@@ -16,3 +16,7 @@ code {
 .blue {
   color: #3b5998;
 }
+
+a {
+  color: inherit;
+}

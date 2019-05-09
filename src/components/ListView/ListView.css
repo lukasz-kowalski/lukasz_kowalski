@@ -8,3 +8,27 @@
 input[type="radio"], .radio-label {
   display: block;
 }
+
+th[scope="col"] {
+  position: relative;
+  height: 3rem;
+  min-width: 4rem;
+}
+
+.th-button {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-weight: bold;
+  outline-offset: -3px;
+  cursor: pointer;
+}
+
+.th-button:hover {
+  background: #ddd;
+}
